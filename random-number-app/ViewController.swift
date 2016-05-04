@@ -52,6 +52,7 @@ class ViewController: UIViewController, GuessDelegate {
         previousNumber = guessNumber
         
         let numToCheck = Int(guessNumber)
+        
         if numToCheck > secretNumber {
             appNumberLabel.text = "Nope, too big"
         }
