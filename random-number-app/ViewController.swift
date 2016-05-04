@@ -15,11 +15,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var guessBtn: UIButton!
     @IBOutlet weak var playAgainBtn: UIButton!
     
+    var secretNumber: Int = 0
+    
     @IBAction func playAgainAction(sender: AnyObject) {
         playAgainBtn.hidden = true
         guessBtn.hidden = false
         appNumberLabel.text = ""
         userNumberLabel.text = "New try"
+        generateNumber()
     }
     
     override func viewDidLoad() {
@@ -30,6 +33,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func generateNumber() {
+        secretNumber = Int(arc4random_uniform(10))
+        print("Number to guess : \(secretNumber)")
+        return
     }
 
 
