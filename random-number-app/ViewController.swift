@@ -18,16 +18,13 @@ class ViewController: UIViewController {
     var secretNumber: Int = 0
     
     @IBAction func playAgainAction(sender: AnyObject) {
-        playAgainBtn.hidden = true
-        guessBtn.hidden = false
-        appNumberLabel.text = ""
-        userNumberLabel.text = "New try"
-        generateNumber()
+        self.initGame()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.initGame()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +36,14 @@ class ViewController: UIViewController {
         secretNumber = Int(arc4random_uniform(10))
         print("Number to guess : \(secretNumber)")
         return
+    }
+    
+    func initGame() {
+        playAgainBtn.hidden = true
+        guessBtn.hidden = false
+        appNumberLabel.text = ""
+        userNumberLabel.text = "New try"
+        generateNumber()
     }
 
 
