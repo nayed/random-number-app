@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GuessDelegate {
 
     @IBOutlet weak var userNumberLabel: UILabel!
     @IBOutlet weak var appNumberLabel: UILabel!
@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playAgainBtn: UIButton!
     
     var secretNumber: Int = 0
+    var previousNumber: String = ""
     
     @IBAction func playAgainAction(sender: AnyObject) {
         self.initGame()
@@ -45,7 +46,17 @@ class ViewController: UIViewController {
         userNumberLabel.text = "New try"
         generateNumber()
     }
-
-
+    
+    func verifyUserInput(controller: GuessViewController, guessNumber: String) {
+        userNumberLabel.text = "You entered \(guessNumber)"
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GuessSegue" {
+            let viewController = segue.destinationViewController as! GuessViewController
+            viewController.previousNumber = previousNumber
+            viewController.delegate = self
+        }
+    }
 }
 
