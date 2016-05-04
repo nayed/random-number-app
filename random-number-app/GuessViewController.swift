@@ -21,11 +21,18 @@ class GuessViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var numTextField: UITextField!
     
     @IBAction func verifyBtnAction(sender: AnyObject) {
+        if delegate != nil {
+            delegate?.verifyUserInput(self, guessNumber: numTextField.text!)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if !previousNumber.isEmpty {
+            numTextField.text = previousNumber
+        }
+        numTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

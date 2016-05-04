@@ -49,6 +49,22 @@ class ViewController: UIViewController, GuessDelegate {
     
     func verifyUserInput(controller: GuessViewController, guessNumber: String) {
         userNumberLabel.text = "You entered \(guessNumber)"
+        previousNumber = guessNumber
+        
+        let numToCheck = Int(guessNumber)
+        if numToCheck > secretNumber {
+            appNumberLabel.text = "Nope, too big"
+        }
+        else if numToCheck < secretNumber {
+            appNumberLabel.text = "Nope, too little"
+        }
+        else {
+            appNumberLabel.text = "You damn right!"
+            playAgainBtn.hidden = false
+            guessBtn.hidden = true
+        }
+        
+        controller.navigationController?.popViewControllerAnimated(true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
