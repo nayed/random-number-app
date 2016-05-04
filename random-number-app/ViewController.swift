@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     
     @IBAction func playAgainAction(sender: AnyObject) {
         playAgainBtn.hidden = true
+        guessBtn.hidden = false
+        appNumberLabel.text = ""
+        userNumberLabel.text = "New try"
     }
     
     override func viewDidLoad() {
